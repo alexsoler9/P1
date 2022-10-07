@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     float *x;
     short *buffer;
     FILE  *fpWave;
-    FILE  *fpOut;
+    FILE  *fpOut = stdout; //si no llamamos al programa con un segundo argumento, el output sera por pantalla
 
     if (argc != 2 && argc != 3) {
         fprintf(stderr, "Empleo: %s inputfile [outputfile]\n", argv[0]);
@@ -41,16 +41,6 @@ int main(int argc, char *argv[]) {
         for (int n = 0; n < N; n++) x[n] = buffer[n] / (float) (1 << 15);
     
         fprintf(fpOut, "%d\t %f\t %f\t %f\n", trm, compute_power(x, N),
-                                        compute_am(x, N),
-                                        compute_zcr(x, N, fm));
-        trm += 1;
-    }
-
-    trm = 0;
-    while (lee_wave(buffer, sizeof(*buffer), N, fpWave) == N) {
-        for (int n = 0; n < N; n++) x[n] = buffer[n] / (float) (1 << 15);
-    
-        printf("%d\t %f\t %f\t %f\n", trm, compute_power(x, N),
                                         compute_am(x, N),
                                         compute_zcr(x, N, fm));
         trm += 1;
