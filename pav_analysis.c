@@ -3,15 +3,13 @@
 #include "pav_analysis.h"
 
 float compute_power(const float *x, unsigned int N) {
-    float aux = 1e-10; //Debemos evitar inicializar a 0, saldra infinito a la salida
+    float aux = 1e-12; //Debemos evitar inicializar a 0, saldra infinito a la salida
     float potencia;
     for (unsigned int i=0; i<(N-1); i++) {
         aux += x[i]*x[i];
     }
 
-    aux = aux/N;
-
-    potencia = 10*log10(aux/N);
+    potencia = (10*log10(aux/N));
     //printf("Potencia: %f\n", potencia);
     return potencia;
 }
