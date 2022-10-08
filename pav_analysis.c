@@ -29,7 +29,7 @@ float compute_am(const float *x, unsigned int N) {
 float compute_zcr(const float *x, unsigned int N, float fm) {
     int contador = 0;
 
-    for (unsigned int i=1; i<N; i++) {
+    for (unsigned int i=1; i<N-1; i++) {
         if (x[i]*x[i-1] < 0) {
             contador++;
         }

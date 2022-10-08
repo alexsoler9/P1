@@ -11,6 +11,7 @@ FILE *abre_wave(const char *ficWave, float *fm) {
     fseek(fpWave, 24, SEEK_SET); //desde el principio del fichero, fm corresponde a un offset de 24
     fread(&fmHeader, 4, 1, fpWave); //fm tiene un tamaño de 4 bytes
     *fm = fmHeader;
+    fseek(fpWave, 44, SEEK_SET);
 
     return fpWave;
 }
